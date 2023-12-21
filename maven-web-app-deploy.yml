@@ -9,9 +9,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:  # Indentation fixed here
+    - host: karthi.com
+      http:  # Indentation fixed here
         paths:
-        - path: /karthikeyan
+        - path: /
           pathType: Prefix
           backend:
             service:
