@@ -1,3 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource1
+  namespace: karthi
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:  # Indentation fixed here
+        paths:
+        - path: /karthikeyan
+          pathType: Prefix
+          backend:
+            service:
+              name: mavenwebappsvc
+              port:
+                number: 80
+
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,26 +56,3 @@ spec:
    - port: 80
      targetPort: 8080
 ...
-
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-resource1
-  namespace: karthi
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  ingressClassName: nginx
-  rules:
-    - http:  # Indentation fixed here
-        paths:
-        - path: /karthikeyan
-          pathType: Prefix
-          backend:
-            service:
-              name: mavenwebappsvc
-              port:
-                number: 80
-
